@@ -7,9 +7,10 @@ class Product extends \Model implements HasPriceInterface, HasTitle
 
     use HasPriceTrait;
 
-    protected const TABLE = 'products';
+    protected const TABLE = 'product';
 
     public string $title;
+    public int $price;
 
     public function getTitle(): string
     {
