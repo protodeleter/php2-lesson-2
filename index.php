@@ -19,14 +19,13 @@ $db = \Db::instance();
 
 $product = new Product();
 
-$product->id = 1;
-//$product->title = 'jopaasdasd 2';
-//$product->price = 42000;
+var_dump ($product);
 
+$product->id = 2;
+$product->title = 'test 2 testest';
+$product->price = 523523;
 
-//$product->insert();
+$product->insert ();
 
-$product->delete();
+var_dump ($product);
 
-
-//var_dump($product);

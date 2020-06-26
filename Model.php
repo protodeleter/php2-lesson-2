@@ -53,7 +53,7 @@ abstract class Model
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . implode( $newBind ) . ' WHERE id='.$this->id;
         $db = Db::instance();
         $db->execute($sql, $data);
-        $this->id = $db->lastId();
+       $this->id = $db->lastId();
     }
 
     public function delete() {
@@ -62,6 +62,15 @@ abstract class Model
         $db->execute($sql, $data = []);
     }
 
+    public function save() {
+
+        if ( $this->update() ) {
+            return true;
+        } else {
+            $this->insert();
+        }
+
+    }
 
 
 
