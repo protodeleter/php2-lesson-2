@@ -11,12 +11,25 @@ abstract class Model
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE;
-        return $db->query($sql, static::class);
+        $data = $db->query($sql, static::class);
+        include_once __DIR__.'../Tpl/index.php';
+        return $data;
+    }
+
+    public function findById(): object
+    {
+        $db = Db::instance();
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id='.$this->id;
+        $data = $db->query($sql, static::class);
+        $data = $data[0];
+        include_once __DIR__.'../Tpl/single.php';
+        return $data;
     }
 
     public function insert()
     {
         $props = get_object_vars($this);
+        unset($props['id']);
         $columns = [];
         $binds = [];
         $data = [];
@@ -36,7 +49,7 @@ abstract class Model
     public function update()
     {
         $props = get_object_vars($this);
-        unset($props['id']);
+//        unset($props['id']);
         $data = [];
         $newBind = [];
         $cc = 0;
@@ -53,25 +66,18 @@ abstract class Model
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . implode( $newBind ) . ' WHERE id='.$this->id;
         $db = Db::instance();
         $db->execute($sql, $data);
-       $this->id = $db->lastId();
     }
-
     public function delete() {
         $sql = 'DELETE FROM '.static::TABLE.' WHERE id='.$this->id;
         $db = Db::instance();
         $db->execute($sql, $data = []);
     }
-
     public function save() {
-
-        if ( $this->update() ) {
-            return true;
+        if( isset( $this->id ) ) {
+            $this->update ();
         } else {
-            $this->insert();
+            $this->insert ();
         }
-
     }
-
-
 
 }

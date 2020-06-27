@@ -3,11 +3,8 @@ use App\Config;
 
 class Db
 {
-
     protected static $instance = null;
-
     protected PDO $dbh;
-
     public static function instance()
     {
         if (null === self::$instance) {
@@ -18,7 +15,7 @@ class Db
 
     protected function __construct()
     {
-        $config = new App\Config;
+        $config = \App\Config::conf_instance ();
 
         $db_host = $config->data['prod_db']['host'];
         $db_name = $config->data['prod_db']['dbname'];
