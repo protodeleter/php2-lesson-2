@@ -21,9 +21,18 @@ abstract class Model
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id='.$this->id;
         $data = $db->query($sql, static::class);
-        $data = $data[0];
-        include_once __DIR__.'../Tpl/single.php';
-        return $data;
+
+
+        if ( is_object($data[0])  ) {
+            $data = $data[0];
+            include_once __DIR__.'../Tpl/article.php';
+            return $data;
+        } else {
+            Header('Location: http://php2.local/lesson-2/php2-lesson-2/');
+            exit;
+        }
+
+
     }
 
     public function insert()

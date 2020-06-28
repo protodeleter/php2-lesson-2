@@ -21,8 +21,8 @@ if ( isset( $_POST ) && !empty($_POST) ) {
     $news->Title = $_POST['Title'];
     $news->Content = $_POST['Content'];
     $news->insert ();
-
     header("Refresh:0");
+    exit;
 }
 ?>
 

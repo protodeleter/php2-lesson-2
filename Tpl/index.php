@@ -1,8 +1,4 @@
-
 <ul>
-
-
-
 <?php
 /**
  * Created by PhpStorm.
@@ -11,18 +7,13 @@
  * Time: 14:49
  */
 
-
 foreach ($data as $datum) {?>
-
     <li>
-        <a href="single.php?art_id=<?php echo $datum->id; ?>"> <?php echo 'Title: ' . $datum->Title . '<br/>' ; ?> </a>
-
+        <a href="article.php?art_id=<?php echo $datum->id; ?>"> <?php echo 'Title: ' . $datum->Title . '<br/>' ; ?> </a>
         <?php echo 'Content: ' . $datum->Content. '<br/>'; ?>
     </li>
-
 <?php
 }
 ?>
-
 </ul>
 

@@ -18,14 +18,15 @@ if ( isset($_POST['update']) && !empty($_POST['update']) ) {
     $insert->Content = $_POST['Content'];
     $insert->save ();
     header("Refresh:0");
+    exit;
 
 } elseif (isset($_POST['delete']) && !empty($_POST['delete'])) {
 
 $insert->id = (int) $_POST['id'];
 $insert->delete ();
 header("Location: http://php2.local/lesson-2/php2-lesson-2/");
-
-} else {
+exit;
+}
 ?>
 
 <div class="single">
@@ -43,6 +44,3 @@ header("Location: http://php2.local/lesson-2/php2-lesson-2/");
     <input type="submit" name="update" value="Update">
     <input type="submit" name="delete" value="Delete">
 </form>
-
-
-<?php } ?>
