@@ -12,8 +12,12 @@ abstract class Model
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE;
         $data = $db->query($sql, static::class);
-        include_once __DIR__.'../Tpl/index.php';
-        return $data;
+
+        if ( is_object($data[0])  ) {
+            $data = $data[0];
+            include_once __DIR__.'../Tpl/index.php';
+            return $data;
+        }
     }
 
     public function findById(): object
